@@ -166,7 +166,7 @@ const BeneficiaryDashboard = () => {
         </Card>
 
         {/* Analytics & Impact */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6" id="funds-recieved">
           {/* Funds Received Over Time */}
           <Card className="p-4 sm:p-6 card-elevated">
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Funds Received</h2>
