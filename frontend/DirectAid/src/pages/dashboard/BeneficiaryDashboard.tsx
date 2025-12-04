@@ -229,7 +229,7 @@ const BeneficiaryDashboard = () => {
           
           <div className="space-y-4">
             {activeCampaigns.map((campaign, index) => (
-              <div key={index} className="p-3 sm:p-4 rounded-2xl bg-secondary/50 border border-border">
+              <div key={index} className="p-3 sm:p-4 rounded-2xl bg-secondary/100 border border-border">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-3 mb-3">
                   <div className="min-w-0">
                     <h3 className="font-semibold text-sm sm:text-base mb-1">{campaign.title}</h3>
@@ -244,15 +244,15 @@ const BeneficiaryDashboard = () => {
                   </span>
                 </div>
                 
-                <Progress value={campaign.progress} className="h-2 mb-3" />
+                <Progress value={campaign.progress} className="h-2 mb-3 " />
                 
                 {campaign.status === 'Live' && (
                   <div className="flex flex-col sm:flex-row gap-2">
-                    <Button size="sm" variant="outline" className="flex-1 rounded-full gap-2">
+                    <Button size="sm" variant="outline" className="flex-1 rounded-full gap-2 bg-[#0B1221]">
                       <Copy className="w-4 h-4" />
                       Copy Link
                     </Button>
-                    <Button size="sm" variant="outline" className="flex-1 rounded-full gap-2 ">
+                    <Button size="sm" variant="outline" className="flex-1 rounded-full gap-2 bg-[#0B1221]">
                       <Share2 className="w-4 h-4" />
                       Share
                     </Button>
@@ -278,10 +278,10 @@ const BeneficiaryDashboard = () => {
             
             <div className="space-y-3">
               {messages.map((msg, index) => (
-                <div key={index} className={`p-3 sm:p-4 rounded-2xl ${msg.unread ? 'bg-primary/5 border border-primary/20' : 'bg-secondary/50'}`}>
-                  <div className="flex items-start justify-between mb-2 gap-2">
-                    <p className="font-semibold text-xs sm:text-sm">{msg.from}</p>
-                    {msg.unread && <span className="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>}
+                <div key={index} className={`p-3 sm:p-4 rounded-2xl ${msg.unread ? 'bg-primary/5 border border-primary/20' : 'bg-[#0B1221]/50'}`}>
+                  <div className="flex items-start justify-between mb-2 gap-2 ">
+                    <p className="font-semibold text-xs sm:text-sm ">{msg.from}</p>
+                    {msg.unread && <span className="w-2 h-2 rounded-full bg-primary flex-shrink-0 "></span>}
                   </div>
                   <p className="text-xs sm:text-sm mb-2">{msg.message}</p>
                   <p className="text-xs text-muted-foreground">{msg.date}</p>
@@ -310,7 +310,7 @@ const BeneficiaryDashboard = () => {
                 </div>
               </div>
 
-              <div className="p-3 sm:p-4 rounded-2xl bg-secondary/50">
+              <div className="p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Last Confirmation</p>
                 <p className="font-semibold text-sm sm:text-base">November 8, 2024</p>
                 <p className="text-xs text-muted-foreground mt-1">Food package delivery confirmed</p>
@@ -340,15 +340,15 @@ const BeneficiaryDashboard = () => {
               </div>
 
               <div className="space-y-2 sm:space-y-3">
-                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-secondary/50 gap-2">
+                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-[#0B1221]/50 gap-2">
                   <span className="text-xs sm:text-sm font-medium">Initial Assessment</span>
                   <span className="text-xs text-green-600 font-medium flex-shrink-0">Approved ✓</span>
                 </div>
-                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-secondary/50 gap-2">
+                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-[#0B1221]/50 gap-2">
                   <span className="text-xs sm:text-sm font-medium">First Quarter Report</span>
                   <span className="text-xs text-green-600 font-medium flex-shrink-0">Submitted ✓</span>
                 </div>
-                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-secondary/50 gap-2">
+                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-[#0B1221]/50 gap-2">
                   <span className="text-xs sm:text-sm font-medium">Audit Compliance</span>
                   <span className="text-xs text-green-600 font-medium flex-shrink-0">Verified ✓</span>
                 </div>

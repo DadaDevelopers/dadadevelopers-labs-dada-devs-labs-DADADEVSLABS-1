@@ -89,7 +89,7 @@ export const DashboardLayout = ({ children, navItems, userName, userRole }: Dash
           {/* Search - Hidden on mobile */}
           <div className="hidden sm:block flex-1 max-w-xl relative" >
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input placeholder="Search campaigns..." className="pl-10 rounded-full" />
+            <Input placeholder="Search campaigns..." className="pl-10 rounded-full bg-[#0B1221]" />
           </div>
 
           {/* Right Side Icons */}
@@ -109,7 +109,7 @@ export const DashboardLayout = ({ children, navItems, userName, userRole }: Dash
                 <p className="text-xs text-muted-foreground">{userRole}</p>
               </div>
               <Avatar className="w-8 h-8 sm:w-10 sm:h-10">
-                <AvatarFallback className="bg-primary text-primary-foreground text-xs sm:text-sm">
+                <AvatarFallback className=" text-black text-xs sm:text-sm bg-[var(--color-accent)]">
                   {userName
                     .split(" ")
                     .map((n) => n[0])

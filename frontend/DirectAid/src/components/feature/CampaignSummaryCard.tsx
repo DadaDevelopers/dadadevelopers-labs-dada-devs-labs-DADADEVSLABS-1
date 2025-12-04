@@ -52,7 +52,7 @@ export const CampaignSummaryCard = ({
                 of ${targetAmount.toLocaleString()}
               </span>
             </div>
-            <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
+            <div className="w-full h-2 bg-[#0B1221] rounded-full overflow-hidden">
               <div
                 className="h-full bg-[var(--color-accent)] transition-all duration-300"
                 style={{ width: `${progressPercentage}%` }}

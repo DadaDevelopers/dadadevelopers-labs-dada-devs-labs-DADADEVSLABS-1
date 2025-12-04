@@ -179,7 +179,7 @@ const DonorDashboard = () => {
             {donationHistory.map((donation, index) => (
               <div 
                 key={index} 
-                className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 rounded-2xl bg-secondary/50 hover:bg-secondary transition-colors gap-3"
+                className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 rounded-2xl  bg-[#0B1221]/50 hover:bg-secondary transition-colors gap-3"
               >
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold mb-1 truncate">{donation.campaign}</p>
@@ -305,11 +305,11 @@ const DonorDashboard = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                <div className="p-3 sm:p-4 rounded-xl bg-secondary">
+                <div className="p-3 sm:p-4 rounded-xl bg-[#0B1221]/50">
                   <p className="text-xs sm:text-sm text-muted-foreground mb-1">Campaigns</p>
                   <p className="text-xl sm:text-2xl font-bold">12</p>
                 </div>
-                <div className="p-3 sm:p-4 rounded-xl bg-secondary">
+                <div className="p-3 sm:p-4 rounded-xl bg-[#0B1221]/50">
                   <p className="text-xs sm:text-sm text-muted-foreground mb-1">Countries</p>
                   <p className="text-xl sm:text-2xl font-bold">8</p>
                 </div>
@@ -328,7 +328,7 @@ const DonorDashboard = () => {
             
             <div className="space-y-3">
               {watchlist.map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 sm:p-4 rounded-2xl bg-secondary/50 gap-3">
+                <div key={index} className="flex items-center justify-between p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50 gap-3">
                   <div className="min-w-0 flex-1">
                     <p className="font-semibold mb-1 text-sm sm:text-base truncate">{item.name}</p>
                     <p className="text-xs text-muted-foreground">Saved {item.saved}</p>
@@ -347,17 +347,17 @@ const DonorDashboard = () => {
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Donation Settings</h2>
             
             <div className="space-y-3 sm:space-y-4">
-              <div className="p-3 sm:p-4 rounded-2xl bg-secondary/50">
+              <div className="p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Email for Receipts</p>
                 <p className="font-semibold text-sm sm:text-base truncate">james.wilson@email.com</p>
               </div>
 
-              <div className="p-3 sm:p-4 rounded-2xl bg-secondary/50">
+              <div className="p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Preferred Payment Method</p>
                 <p className="font-semibold text-sm sm:text-base">Bitcoin Lightning • Ending in 8394</p>
               </div>
 
-              <div className="p-3 sm:p-4 rounded-2xl bg-secondary/50">
+              <div className="p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Local Currency Display</p>
                 <p className="font-semibold text-sm sm:text-base">USD ($)</p>
               </div>

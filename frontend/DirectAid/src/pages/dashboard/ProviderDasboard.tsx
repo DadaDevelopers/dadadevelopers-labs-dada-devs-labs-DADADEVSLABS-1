@@ -189,8 +189,8 @@ const ProviderDashboard = () => {
                     <p className="font-bold text-sm sm:text-base">{approval.amount}</p>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2">
-                    <Button size="sm" className="flex-1 rounded-full">
-                      <CheckCircle className="w-4 h-4 mr-1" />
+                    <Button size="sm" className="flex-1 rounded-full bg-[#0B1221]/50">
+                      <CheckCircle className="w-4 h-4 mr-1 " />
                       Approve
                     </Button>
                     <Button size="sm" variant="outline" className="flex-1 rounded-full btn-cta">
@@ -210,7 +210,7 @@ const ProviderDashboard = () => {
             
             <div className="space-y-3">
               {notifications.map((notif, index) => (
-                <div key={index} className="p-3 sm:p-4 rounded-2xl bg-secondary/50">
+                <div key={index} className="p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50 ">
                   <div className="flex gap-3">
                     <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
                       notif.type === 'donation' ? 'bg-green-500' : 'bg-blue-500'
@@ -337,7 +337,7 @@ const ProviderDashboard = () => {
               </div>
 
               <div className="space-y-2 sm:space-y-3">
-                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-secondary/50 gap-2">
+                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-[#0B1221]/50 gap-2">
                   <div className="flex items-center gap-2 min-w-0">
                     <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
                     <span className="text-xs sm:text-sm font-medium truncate">Food Supply Delivered</span>
@@ -346,7 +346,7 @@ const ProviderDashboard = () => {
                     <Clock className="w-4 h-4" />
                   </Button>
                 </div>
-                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-secondary/50 gap-2">
+                <div className="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-[#0B1221]/50 gap-2">
                   <div className="flex items-center gap-2 min-w-0">
                     <Clock className="w-4 h-4 text-yellow-600 flex-shrink-0" />
                     <span className="text-xs sm:text-sm font-medium truncate">Medical Supplies Pending</span>
@@ -363,12 +363,12 @@ const ProviderDashboard = () => {
             <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Provider Profile</h2>
             
             <div className="space-y-3 sm:space-y-4">
-              <div className="p-3 sm:p-4 rounded-2xl bg-secondary/50">
+              <div className="p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Organization Name</p>
                 <p className="font-semibold text-sm sm:text-base">Global Relief Foundation</p>
               </div>
 
-              <div className="p-3 sm:p-4 rounded-2xl bg-secondary/50">
+              <div className="p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Verification Status</p>
                 <div className="flex items-center gap-2">
                   <Shield className="w-4 h-4 text-green-600" />
@@ -376,7 +376,7 @@ const ProviderDashboard = () => {
                 </div>
               </div>
 
-              <div className="p-3 sm:p-4 rounded-2xl bg-secondary/50">
+              <div className="p-3 sm:p-4 rounded-2xl bg-[#0B1221]/50">
                 <p className="text-xs sm:text-sm text-muted-foreground mb-1 sm:mb-2">Registration Number</p>
                 <p className="font-semibold text-sm sm:text-base">NGO-2019-45678</p>
               </div>
@@ -407,7 +407,7 @@ const ProviderDashboard = () => {
               { date: "2024-11-20", amount: "$8,500", campaign: "Clean Water Infrastructure", status: "Completed" },
               { date: "2024-11-15", amount: "$12,000", campaign: "Medical Supplies Drive", status: "Pending" },
             ].map((withdrawal, index) => (
-              <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 rounded-2xl bg-secondary/50 gap-2 sm:gap-4">
+              <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 sm:p-4 rounded-2xl bg-[#0B1221] gap-2 sm:gap-4">
                 <div className="flex-1 min-w-0">
                   <p className="font-semibold text-sm sm:text-base truncate">{withdrawal.campaign}</p>
                   <p className="text-xs sm:text-sm text-muted-foreground">{withdrawal.date}</p>
