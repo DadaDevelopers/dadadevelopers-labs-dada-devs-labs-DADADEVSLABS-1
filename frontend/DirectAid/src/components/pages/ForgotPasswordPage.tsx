@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FormInput from "../ui/FormInput";
 import Button from "../ui/Button";
-import { forgotPassword } from "../../services/api";
+import api from "../../services/api";
 
 interface FormErrors {
   email?: string;
@@ -56,11 +56,11 @@ const ForgotPasswordPage: React.FC = () => {
 
     try {
       // Call the forgot password API
-      await forgotPassword(email);
+      await api.post("/auth/forgot-password", { email });
 
       // Show success message
       setIsSuccess(true);
-    } catch (error) {
+    } catch {
       setErrors({
         general: "An error occurred. Please try again.",
       });

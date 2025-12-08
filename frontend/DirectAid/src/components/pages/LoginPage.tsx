@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../ui/FormInput";
 import Button from "../ui/Button";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface LoginFormData {
   email: string;
@@ -23,7 +23,7 @@ const LoginPage: React.FC = () => {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { login } = useAuth();
+  const { login, user } = useAuth();
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -76,14 +76,28 @@ const LoginPage: React.FC = () => {
 
     try {
       // Use auth context to login
-      const res = await login(formData.email, formData.password);
-      // prefer server returned user role, fallback to donor
-      const role = res?.user?.role || "donor";
+      const result = await login(formData.email, formData.password);
+
+      if (!result.ok) {
+        setErrors({
+          general:
+            result.error || "Invalid email or password. Please try again.",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Login successful - navigate based on role
+      // The user is now set in the auth context
+      const role = user?.role || "donor";
+
       // navigate based on role
-      if (role === "provider") navigate("/providerdashboard");
-      else if (role === "beneficiary") navigate("/userdashboard");
+      if (role === "provider" || role === "Provider")
+        navigate("/providerdashboard");
+      else if (role === "beneficiary" || role === "Beneficiary")
+        navigate("/userdashboard");
       else navigate("/donordashboard");
-    } catch (error) {
+    } catch {
       setErrors({
         general: "Invalid email or password. Please try again.",
       });

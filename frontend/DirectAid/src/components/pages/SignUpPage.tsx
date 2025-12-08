@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import FormInput from "../ui/FormInput";
 import Button from "../ui/Button";
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from "../../contexts/AuthContext";
 
 type UserRole = "provider" | "beneficiary" | "donor" | "ngo";
 
@@ -186,10 +186,25 @@ const SignUpPage: React.FC = () => {
     setErrors({});
 
     try {
-      // Use auth context to signup and then send user to the login page for sign-in
-      await signup({ ...formData });
-      navigate("/login");
-    } catch (error) {
+      // Use auth context to signup
+      const result = await signup({ ...formData });
+
+      if (!result.ok) {
+        setErrors({
+          general:
+            result.error ||
+            "An error occurred during signup. Please try again.",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Signup successful - navigate to appropriate dashboard based on role
+      const role = formData.role || "donor";
+      if (role === "provider") navigate("/providerdashboard");
+      else if (role === "beneficiary") navigate("/userdashboard");
+      else navigate("/donordashboard");
+    } catch {
       setErrors({
         general: "An error occurred during signup. Please try again.",
       });

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../ui/Button";
-import { donateGuest } from "../../services/api";
-import { useAuth } from "../../hooks/useAuth";
+import api from "../../services/api";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function DonationForm() {
   const { user } = useAuth();
@@ -26,15 +26,15 @@ export default function DonationForm() {
         email: user ? user.email : email,
         method,
       };
-      const res = await donateGuest(payload);
+      const res = await api.post("/donate/guest", payload);
       setMessage(
-        res?.receiptId
-          ? `Donation successful — receipt ${res.receiptId}`
+        res?.data?.receiptId
+          ? `Donation successful — receipt ${res.data.receiptId}`
           : "Donation successful"
       );
       setAmount("");
       setEmail("");
-    } catch (err) {
+    } catch {
       setMessage("Donation failed. Please try again.");
     } finally {
       setIsSubmitting(false);
