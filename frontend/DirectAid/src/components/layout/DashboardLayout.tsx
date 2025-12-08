@@ -20,41 +20,56 @@ interface DashboardLayoutProps {
   userRole: string;
 }
 
-export const DashboardLayout = ({ children, navItems, userName, userRole }: DashboardLayoutProps) => {
+export const DashboardLayout = ({
+  children,
+  navItems,
+  userName,
+  userRole,
+}: DashboardLayoutProps) => {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const NavContent = () => (
-  <nav className="p-4 space-y-2">
-    {navItems.map((item) => {
-      const isActive = location.pathname === item.href;
-      return (
-        <Link key={item.href} to={item.href} onClick={() => setMobileMenuOpen(false)}>
-          <button
-            className={`
-              flex w-full items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300
-              ${isActive 
-                ? "bg-primary text-primary-foreground shadow-md btn-cta"
-                : "bg-card text-card-foreground hover:text-[var(--color-accent)] hover:shadow-lg hover:bg-card/80"}
-            `}
+    <nav className="p-4 space-y-2">
+      {navItems.map((item) => {
+        const isActive = location.pathname === item.href;
+        return (
+          <Link
+            key={item.href}
+            to={item.href}
+            onClick={() => setMobileMenuOpen(false)}
           >
-            {item.icon}
-            {item.label}
-          </button>
-        </Link>
-      );
-    })}
-  </nav>
-);
-
+            <button
+              className={`
+              flex w-full items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300
+              ${
+                isActive
+                  ? "bg-primary text-primary-foreground shadow-md btn-cta"
+                  : "bg-card text-card-foreground hover:text-[var(--color-accent)] hover:shadow-lg hover:bg-card/80"
+              }
+            `}
+            >
+              {item.icon}
+              {item.label}
+            </button>
+          </Link>
+        );
+      })}
+    </nav>
+  );
 
   return (
-    <div className="flex min-h-screen" >
+    <div className="flex min-h-screen">
       {/* Desktop Sidebar */}
-      <aside className="hidden lg:flex lg:flex-col w-64 h-screen border-r border-border  flex-shrink-0 sticky top-0 overflow-y-auto" style={{ backgroundColor: 'var(--color-secondary-bg)' }}>
+      <aside
+        className="hidden lg:flex lg:flex-col w-64 h-screen border-r border-border  flex-shrink-0 sticky top-0 overflow-y-auto"
+        style={{ backgroundColor: "var(--color-secondary-bg)" }}
+      >
         <div className="p-6 border-b border-border">
           <Link to="/">
-            <h1 className="text-3xl font-bold text-[var(--color-accent)]">DirectAid</h1>
+            <h1 className="text-3xl font-bold text-[var(--color-accent)]">
+              DirectAid
+            </h1>
           </Link>
         </div>
         <NavContent />
@@ -75,7 +90,10 @@ export const DashboardLayout = ({ children, navItems, userName, userRole }: Dash
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-auto">
         {/* Top Bar */}
-        <header className="border-b border-border bg-card px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4" style={{ backgroundColor: 'var(--color-secondary-bg)' }}>
+        <header
+          className="border-b border-border bg-card px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4"
+          style={{ backgroundColor: "var(--color-secondary-bg)" }}
+        >
           {/* Mobile Menu Toggle */}
           <Button
             variant="ghost"
@@ -87,15 +105,22 @@ export const DashboardLayout = ({ children, navItems, userName, userRole }: Dash
           </Button>
 
           {/* Search - Hidden on mobile */}
-          <div className="hidden sm:block flex-1 max-w-xl relative" >
+          <div className="hidden sm:block flex-1 max-w-xl relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <Input placeholder="Search campaigns..." className="pl-10 rounded-full bg-[#0B1221]" />
+            <Input
+              placeholder="Search campaigns..."
+              className="pl-10 rounded-full bg-[#0B1221]"
+            />
           </div>
 
           {/* Right Side Icons */}
           <div className="flex items-center gap-2 sm:gap-4 ml-auto">
             {/* Mobile Search Button */}
-            <Button variant="ghost" size="icon" className="rounded-full sm:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="rounded-full sm:hidden"
+            >
               <Search className="w-5 h-5" />
             </Button>
 
@@ -121,7 +146,7 @@ export const DashboardLayout = ({ children, navItems, userName, userRole }: Dash
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 bg-[#0B1221] overflow-x-hidden" >
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 bg-[#0B1221] overflow-x-hidden">
           {children}
         </main>
       </div>
