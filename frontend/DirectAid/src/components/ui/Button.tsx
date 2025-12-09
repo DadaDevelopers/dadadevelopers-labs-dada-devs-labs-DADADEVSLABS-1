@@ -1,55 +1,51 @@
-import React from 'react';
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+
+import { cn } from "../../lib/utils";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline';
-  size?: 'sm' | 'md' | 'lg';
-  children: React.ReactNode;
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  size?: "default" | "sm" | "lg" | "icon";
+  asChild?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  variant = 'primary',
-  size = 'md',
-  disabled = false,
-  className = '',
-  children,
-  ...props
-}) => {
-  const baseStyles = 'font-medium rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[#0B1221]';
-  
-  const variantStyles = {
-    primary: 'btn-cta',
-    secondary: 'bg-[#151D2C] text-[var(--color-text-light)] border border-white/20 hover:bg-[#1a2333] hover:border-white/30',
-    outline: 'bg-transparent text-[var(--color-accent)] border-2 border-[var(--color-accent)] hover:bg-[var(--color-accent)]/10'
-  };
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
 
-  const sizeStyles = {
-    sm: 'py-2 px-4 text-sm',
-    md: 'py-3 px-6 text-base',
-    lg: 'py-4 px-8 text-lg'
-  };
+    // Variant classes
+    const variantClasses = {
+      default: "bg-primary text-primary-foreground hover:bg-primary/90",
+      destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+      outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+      ghost: "hover:bg-accent hover:text-accent-foreground",
+      link: "text-primary underline-offset-4 hover:underline",
+    };
 
-  const disabledStyles = disabled 
-    ? 'opacity-50 cursor-not-allowed' 
-    : '';
+    // Size classes
+    const sizeClasses = {
+      default: "h-10 px-4 py-2",
+      sm: "h-9 rounded-md px-3",
+      lg: "h-11 rounded-md px-8",
+      icon: "h-10 w-10",
+    };
 
-  const combinedClassName = `
-    ${baseStyles}
-    ${variantStyles[variant]}
-    ${sizeStyles[size]}
-    ${disabledStyles}
-    ${className}
-  `.trim().replace(/\s+/g, ' ');
+    return (
+      <Comp
+        className={cn(
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+          variantClasses[variant],
+          sizeClasses[size],
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
 
-  return (
-    <button
-      className={combinedClassName}
-      disabled={disabled}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+Button.displayName = "Button";
 
-export default Button;
-
+export { Button };
