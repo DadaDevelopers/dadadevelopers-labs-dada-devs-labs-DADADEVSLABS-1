@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
+import WhyBitcoin from '../components/WhyBitcoin/WhyBitcoin';
+import Testimonials from '../components/Testimonials';
+import Hero from '../components/Hero';
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,101 +17,73 @@ export default function Home() {
   ];
 
   return (
-    <div style={styles.container}>
+    <div className="min-h-screen bg-white font-sans">
       {/* Navbar */}
-      <nav style={styles.navbar}>
-        <div style={styles.logo}>
-          <img src="/images/logo.svg" alt="Logo" style={styles.logoImage} />
+      {/* Navbar */}
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 bg-white border-b border-transparent">
+        <div className="flex items-center">
+          {/* Logo updated to buttons folder */}
+          <img src="/buttons/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
         </div>
 
-        <div style={styles.hamburger} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <div style={styles.line}></div>
-          <div style={styles.line}></div>
-          <div style={styles.line}></div>
-        </div>
+        {/* Hamburger Menu - Top Far Right (Visible on all screens) */}
+        <button
+          className="flex flex-col gap-1.5 cursor-pointer p-2 z-[1002] absolute right-6 top-5"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <div className={`w-6 h-0.5 rounded-full transition-all ${isMenuOpen ? 'bg-white rotate-45 translate-y-2' : 'bg-[#059669]'}`}></div>
+          <div className={`w-6 h-0.5 rounded-full transition-all ${isMenuOpen ? 'bg-white opacity-0' : 'bg-[#059669]'}`}></div>
+          <div className={`w-6 h-0.5 rounded-full transition-all ${isMenuOpen ? 'bg-white -rotate-45 -translate-y-2' : 'bg-[#059669]'}`}></div>
+        </button>
 
-        {isMenuOpen && (
-          <div style={styles.dropdownMenu}>
-            <button style={styles.closeButton} onClick={() => setIsMenuOpen(false)}>×</button>
+        {/* Mobile Menu Backdrop */}
+        <div
+          className={`fixed inset-0 bg-black/50 z-[1000] transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+            }`}
+          onClick={() => setIsMenuOpen(false)}
+        />
+
+        {/* Slide-in Drawer */}
+        <div
+          className={`fixed top-0 right-0 w-[240px] bg-[#059669] z-[1001] shadow-2xl transform transition-transform duration-300 ease-in-out rounded-bl-3xl ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          style={{ height: 'max-content', maxHeight: '100vh', borderBottomLeftRadius: '24px' }}
+        >
+
+          {/* Close Button or Spacer */}
+          <div className="flex justify-end mb-4 h-12">
+            {/* Space for the hamburger (absolute positioned) to overlay without blocking content if needed, 
+                but hamburger is absolute z-1002 so it sits on top..
+                We just need padding for the list. */}
+          </div>
+
+          {/* Menu Items */}
+          <div className="flex flex-col gap-2 pt-2 pb-6">
             {navItems.map((item) => (
-              <a key={item.label} href={item.href} style={styles.dropdownLink}>{item.label}</a>
+              <a
+                key={item.label}
+                href={item.href}
+                className="text-white text-lg font-medium py-3 px-4 rounded-xl hover:bg-[#047857] transition-all hover:pl-6"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </a>
             ))}
           </div>
-        )}
+        </div>
       </nav>
 
       {/* Hero Section */}
-      <section style={styles.heroSection}>
-        <div style={styles.heroContent}>
-          <div style={styles.headline}>
-            <div style={styles.headlineLine1}>Empowering Chamas to Save</div>
-            <div style={styles.headlineLine2}>Grow & Thrive</div>
-          </div>
+      <Hero />
 
-          <div style={styles.subtitle}>
-            <div style={styles.subtitleLine1}>Manage contributions, track savings,</div>
-            <div style={styles.subtitleLine2}>and build financial growth together</div>
-          </div>
+      {/* Why Bitcoin Section */}
+      <WhyBitcoin />
 
-          <div style={styles.buttons}>
-            <div style={styles.buttonRow}>
-              <button style={styles.signUpButton}>Sign Up</button>
-              <button style={styles.loginButton}>Login</button>
-            </div>
-            <button style={styles.bitcoinButton}>Learn About Bitcoin</button>
-          </div>
-        </div>
-      </section>
+      {/* Testimonials Section */}
+      <Testimonials />
     </div>
   );
 }
 
-const styles = {
-  container: { minHeight: '100vh', backgroundColor: 'white' },
-  navbar: {
-    backgroundColor: 'white', padding: '16px 24px', display: 'flex',
-    justifyContent: 'space-between', alignItems: 'center', position: 'fixed',
-    top: 0, left: 0, right: 0, zIndex: 1000, borderBottom: '1px solid #e5e7eb'
-  },
-  logo: { display: 'flex', alignItems: 'center' },
-  logoImage: { width: '40px', height: '40px', objectFit: 'contain' },
-  hamburger: { display: 'flex', flexDirection: 'column', gap: '4px', cursor: 'pointer', padding: '8px' },
-  line: { width: '24px', height: '2px', backgroundColor: '#374151', borderRadius: '1px' },
-  dropdownMenu: {
-    position: 'absolute', top: '70px', right: '24px', backgroundColor: '#059669',
-    borderRadius: '12px', padding: '16px', minWidth: '200px', zIndex: 1001
-  },
-  closeButton: {
-    position: 'absolute', top: '8px', right: '12px', backgroundColor: 'transparent',
-    border: 'none', color: 'white', fontSize: '24px', cursor: 'pointer'
-  },
-  dropdownLink: {
-    display: 'block', padding: '12px 16px', color: 'white', textDecoration: 'none',
-    fontSize: '16px', borderRadius: '8px', marginBottom: '4px'
-  },
-  heroSection: {
-    padding: '140px 20px 80px', textAlign: 'center',
-    background: 'linear-gradient(to right, #F6E9C5 0%, #F6E9C5 30%, #5CB79A 70%, #5CB79A 100%)'
-  },
-  heroContent: { maxWidth: '800px', margin: '0 auto' },
-  headline: { marginBottom: '24px' },
-  headlineLine1: { fontSize: '56px', fontWeight: 'bold', color: '#111827', marginBottom: '8px' },
-  headlineLine2: { fontSize: '56px', fontWeight: 'bold', color: '#111827' },
-  subtitle: { marginBottom: '48px' },
-  subtitleLine1: { fontSize: '20px', color: '#6B7280', lineHeight: '1.6' },
-  subtitleLine2: { fontSize: '20px', color: '#6B7280', lineHeight: '1.6' },
-  buttons: { display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'center' },
-  buttonRow: { display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' },
-  signUpButton: {
-    padding: '16px 40px', backgroundColor: '#059669', color: 'white', border: 'none',
-    borderRadius: '8px', fontSize: '18px', fontWeight: '600', cursor: 'pointer'
-  },
-  loginButton: {
-    padding: '16px 40px', backgroundColor: 'transparent', color: '#059669',
-    border: '2px solid #059669', borderRadius: '8px', fontSize: '18px', fontWeight: '600', cursor: 'pointer'
-  },
-  bitcoinButton: {
-    padding: '16px 40px', backgroundColor: '#FFF7ED', color: '#F7931A',
-    border: '2px solid #F7931A', borderRadius: '8px', fontSize: '18px', fontWeight: '600', cursor: 'pointer'
-  },
-};
